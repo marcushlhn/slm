@@ -57,6 +57,8 @@ std::istream& operator>> (std::istream& file, Reader& reader) {
     int length = 0;
     int k = reader.kgram_length();
     while (file.get(c)) {
+        if (c == '\n') 
+            continue;
         if (length < k) {
             buffer += c;
             length += 1;
