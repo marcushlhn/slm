@@ -1,5 +1,8 @@
+#pragma once
+
 #include <map>
 #include <string>
+#include <iostream>
 #include "kgramcount.h"
 
 class Reader {
@@ -16,11 +19,17 @@ class Reader {
 
     void add_kgram(std::string kgram);
 
-    int kgram_length();
+    int kgram_length() const;
 
-    int count(std::string w);
+    int count(std::string w) const;
 
-    int count(std::string w, char c);
+    int count(std::string w, char c) const;
 
-    float cond_probability(char c, std::string w);
+    float cond_probability(char c, std::string w) const;
+
+    friend std::ostream& operator<<(std::ostream& stream, const Reader& reader);
 };
+
+std::ostream& operator<<(std::ostream& stream, const KgramCount& kc);
+
+std::istream& operator>> (std::istream& file, Reader& reader);

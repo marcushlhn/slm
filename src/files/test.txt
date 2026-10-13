@@ -1,0 +1,2 @@
+The program should read a text file, infer a language model from it, and then use that model to generate new
+text, thus implementing an Artificial idiot.
