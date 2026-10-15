@@ -7,6 +7,7 @@
 
 class Reader {
     int k;
+    int total_kgram_count;
     std::map<std::string, KgramCount> kgram_counts;
 
     public:

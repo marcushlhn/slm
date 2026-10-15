@@ -7,6 +7,7 @@
 
 Reader::Reader (int k) {
     this->k = k;
+    total_kgram_count = 0;
 }
 
 // Private methods
@@ -16,6 +17,7 @@ void Reader::add_kgram (std::string kgram, char following_char) {
         throw std::invalid_argument("kgram is not of appropriate length");
 
     kgram_counts[kgram].add_char(following_char);
+    total_kgram_count += 1;
 }
 
 void Reader::add_kgram (std::string kgram) {
@@ -70,7 +72,6 @@ std::istream& operator>> (std::istream& file, Reader& reader) {
     }
     if (length < k)
         throw std::runtime_error("File does not contain enough characters");
-    reader.add_kgram(buffer);
 
     return file;
 }
