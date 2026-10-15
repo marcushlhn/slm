@@ -1,7 +1,7 @@
 #include "generator.h"
 #include "reader.h"
 #include <string>
-#include <exception>
+#include <stdexcept>
 #include <random>
 #include <iostream>
 #include <numeric>
