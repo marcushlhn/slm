@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include "reader.h"
+#include <algorithm>
 
 // Constructor
 
@@ -18,6 +19,9 @@ void Reader::add_kgram (std::string kgram, char following_char) {
 
     kgram_counts[kgram].add_char(following_char);
     total_kgram_count += 1;
+    if (std::find(alphabet.begin(), alphabet.end(), following_char) == alphabet.end()) {
+        alphabet.push_back(following_char);
+    }
 }
 
 void Reader::add_kgram (std::string kgram) {
@@ -39,16 +43,36 @@ int Reader::count(std::string w, char c) const {
     return 0;
 } 
 
-float Reader::cond_probability(char c, std::string w) const {
-    int nr_w = count(w);
-    if (nr_w == 0)
-        return 0;               // Is the possibility 0 here ?
-    int nr_wc = count(w, c);
-    return nr_wc / nr_w;
-}
-
 int Reader::kgram_length() const {
     return k;
+}
+
+int Reader::get_kgram_total() const {
+    return total_kgram_count;
+}
+
+int Reader::alphabet_size() const {
+    return alphabet.size();
+}
+
+std::vector<char> Reader::get_alphabet() const {
+    return alphabet;
+}
+
+std::vector<std::string> Reader::get_kgrams() const {
+    std::vector<std::string> kgrams;
+    for (const auto& entry : kgram_counts) {
+        kgrams.push_back(entry.first);
+    }
+    return kgrams;
+}
+
+std::vector<int> Reader::get_kgram_weights() const {
+    std::vector<int> weights;
+    for (const auto& entry : kgram_counts) {
+        weights.push_back(entry.second.get_total());
+    }
+    return weights;
 }
 
 // Read from file

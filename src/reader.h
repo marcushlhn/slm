@@ -3,11 +3,13 @@
 #include <map>
 #include <string>
 #include <iostream>
+#include <vector>
 #include "kgramcount.h"
 
 class Reader {
     int k;
     int total_kgram_count;
+    std::vector<char> alphabet;
     std::map<std::string, KgramCount> kgram_counts;
 
     public:
@@ -26,7 +28,15 @@ class Reader {
 
     int count(std::string w, char c) const;
 
-    float cond_probability(char c, std::string w) const;
+    int get_kgram_total() const;
+
+    int alphabet_size() const;
+
+    std::vector<char> get_alphabet() const;
+
+    std::vector<std::string> get_kgrams() const;
+
+    std::vector<int> get_kgram_weights() const;
 
     friend std::ostream& operator<<(std::ostream& stream, const Reader& reader);
 };
