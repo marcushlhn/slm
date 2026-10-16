@@ -96,7 +96,7 @@ std::ostream& operator<< (std::ostream& stream, Generator& gen) {
             //std::cout << "END: " << e.what() << std::endl;
             break;
         }
-        generating = printed_chars <= max_length;
+        generating = printed_chars < max_length;
     }
     return stream;
 }
