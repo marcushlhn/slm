@@ -55,10 +55,18 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    if (length < k) {
+        std::cerr << "Error: Output length must be atleast k" << std::endl;
+        return 1;
+    }
+
     try {
         generate_text(k, path, length, pseudocount);
     }
     catch (const std::runtime_error& e) {
         std::cerr << "Error: " << e.what() << std::endl;
+    }
+    catch (const std::invalid_argument& e) {
+        std::cerr << "Invalid argument: " << e.what() << std::endl;
     }
 }
