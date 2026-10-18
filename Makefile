@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++20
 SOURCES = $(wildcard src/*.cpp)
-TARGET = program
+TARGET = slm
 
 .PHONY: all clean
 
